@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.my.mybatispp.mapper.UuserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.my.mybatispp.entity.Uuser">
+        <result column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="role_id" property="roleId" />
+        <result column="create_time" property="createTime" />
+        <result column="v" property="v" />
+    </resultMap>
+
+    <select id="selectByUsername" resultType="com.example.my.mybatispp.entity.Uuser">
+        SELECT
+           username,
+           password
+        FROM
+            UUSER
+
+        WHERE
+        username=#{username}
+
+    </select>
+
+
+</mapper>
