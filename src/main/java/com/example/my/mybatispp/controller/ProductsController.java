@@ -11,6 +11,8 @@ import com.example.my.mybatispp.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * <p>
  *  前端控制器
@@ -89,12 +91,15 @@ public RestResult delete(@PathVariable("id") int id) {
 
     @RequestMapping(path = "/updateStatus", method = RequestMethod.POST)
 //    public RestResult updateStatus(@RequestBody Products obj) {
-            public RestResult updateStatus(@RequestParam(value ="productId") int id, @RequestParam(value ="status") int status) {
-
+            public RestResult updateStatus(@RequestBody Map<String,Long> map) {
+        Long ss=map.get("productId");
+        Long ss2=map.get("status");
         Products p = new Products();
-        p.setId((long) id);
-        p.setStatus(status);
-        System.out.println(p);
+//        p.setId((long) id);
+        p.setId(ss);
+//        p.setStatus(status);eyt76y
+        p.setStatus(Math.toIntExact(ss2));
+
         productsService.update(p);
         return new RestResult(true, StatusCode.OK, "updateStatus..ok");
 //        return null;
