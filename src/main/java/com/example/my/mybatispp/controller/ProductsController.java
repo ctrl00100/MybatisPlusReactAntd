@@ -7,6 +7,7 @@ import com.example.my.mybatispp.config.MpPageResult;
 import com.example.my.mybatispp.config.RestResult;
 import com.example.my.mybatispp.config.StatusCode;
 import com.example.my.mybatispp.entity.Products;
+import com.example.my.mybatispp.entity.Products2;
 import com.example.my.mybatispp.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +43,8 @@ public RestResult findById(@PathVariable("id") int id) {
 
 
     Products mm = productsService.findById(id);
-        return new RestResult(true, StatusCode.OK, "findById..ok", mm);
+    Products2 m2 = new Products2(mm);
+        return new RestResult(true, StatusCode.OK, "findById..ok", m2);
         }
 
 //findAllSearch  r
@@ -55,8 +57,11 @@ public RestResult findAllSearch(@RequestParam("pageNum") int pageNum, @RequestPa
 
         IPage<Products> mm = productsService.findAllSearch(pageNum, pageSize,searchName,searchType);
 
-        System.out.println(mm.getRecords());
+        System.out.println(mm);
+
     MpPageResult<Products> mm22 = new MpPageResult<Products>(mm.getTotal(),mm.getSize(),mm.getCurrent(),mm.getPages(),mm.getRecords());
+
+
     return new RestResult(true, StatusCode.OK, "findAllSearch..ok",mm22);
         }
 //findAll r
@@ -66,9 +71,11 @@ public RestResult findAllSearch(@RequestParam("pageNum") int pageNum, @RequestPa
 
 
         IPage<Products> mm = productsService.findAll(pageNum, pageSize);
-
-        System.out.println(mm.getRecords());
+        System.out.println(mm+"mm");
+        System.out.println(mm.getRecords()+"66getRecords");
         MpPageResult<Products> mm22 = new MpPageResult<Products>(mm.getTotal(),mm.getSize(),mm.getCurrent(),mm.getPages(),mm.getRecords());
+
+
         return new RestResult(true, StatusCode.OK, "findAll..ok",mm22);
     }
 //update

@@ -38,15 +38,26 @@ public class FileUploadService {
      * @email gaojun56@163.com
      */
     public FileUploadResult upload(MultipartFile uploadFile) {
+
+
         // 校验图片格式
         boolean isLegal = false;
+
+
         for (String type : IMAGE_TYPE) {
-            if (StringUtils.endsWithIgnoreCase(uploadFile.getOriginalFilename(),
-                    type)) {
+            if (StringUtils.endsWithIgnoreCase(uploadFile.getOriginalFilename(), type)) {
+
                 isLegal = true;
                 break;
             }
+
         }
+
+
+
+
+
+
         //封装Result对象，并且将文件的byte数组放置到result对象中
         FileUploadResult fileUploadResult = new FileUploadResult();
         if (!isLegal) {
@@ -70,6 +81,64 @@ public class FileUploadService {
         fileUploadResult.setResponse("success");
         //this.aliyunConfig.getUrlPrefix() + filePath 文件路径需要保存到数据库
         fileUploadResult.setName(this.aliyunConfig.getUrlPrefix() + filePath);
+        fileUploadResult.setUid(String.valueOf(System.currentTimeMillis()));
+        return fileUploadResult;
+    }
+
+
+
+
+    public FileUploadResult upload2(MultipartFile[] uploadFile2) {
+
+
+        // 校验图片格式
+        boolean isLegal = false;
+        Integer i=0;
+        for (MultipartFile uploadFile :uploadFile2) {
+
+            for (String type : IMAGE_TYPE) {
+                if (StringUtils.endsWithIgnoreCase(uploadFile.getOriginalFilename(), type)) {
+                    i++;
+                    break;
+                }
+            }
+        }
+        if (i==uploadFile2.length) {
+            isLegal = true;
+        }
+
+
+        //封装Result对象，并且将文件的byte数组放置到result对象中
+        FileUploadResult fileUploadResult = new FileUploadResult();
+        if (!isLegal) {
+            fileUploadResult.setStatus("error:not \".bmp\", \".jpg\",\n" +
+                    "            \".jpeg\", \".gif\", \".png\"");
+            return fileUploadResult;
+        }
+
+        StringBuffer ss = new StringBuffer();
+        for (MultipartFile uploadFile :uploadFile2) {
+            //文件新路径
+            String fileName = uploadFile.getOriginalFilename();
+            String filePath = getFilePath(fileName);
+            // 上传到阿里云
+            try {
+                ossClient.putObject(aliyunConfig.getBucketName(), filePath, new
+                        ByteArrayInputStream(uploadFile.getBytes()));
+            } catch (Exception e) {
+                e.printStackTrace();
+                //上传失败
+                fileUploadResult.setStatus("error");
+                return fileUploadResult;
+            }
+
+          ss.append(this.aliyunConfig.getUrlPrefix() + filePath);
+
+        }
+        fileUploadResult.setStatus("done");
+        fileUploadResult.setResponse("success");
+        //this.aliyunConfig.getUrlPrefix() + filePath 文件路径需要保存到数据库
+        fileUploadResult.setName(ss.toString());
         fileUploadResult.setUid(String.valueOf(System.currentTimeMillis()));
         return fileUploadResult;
     }

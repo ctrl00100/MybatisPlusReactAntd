@@ -19,16 +19,14 @@ import java.io.Serializable;
  * @since 2019-12-16
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-public class Products extends Model<Products> {
+public class Products2  {
 
-    private static final long serialVersionUID=1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
+
+
     private Long id;
 
-    private String  imgs;
+    private String[]  imgs;
 
     private Integer status;
 
@@ -38,10 +36,10 @@ public class Products extends Model<Products> {
 
     private Long price;
 
-    @TableField("pCategoryId")
+
     private String pCategoryId;
 
-    @TableField("categoryId")
+
     private String categoryId;
 
     private String detail;
@@ -49,9 +47,27 @@ public class Products extends Model<Products> {
     private Integer v;
 
 
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
+    public Products2(Products products) {
+        this.id = products.getId();
+
+        this.status = products.getStatus();
+        this.name = products.getName();
+        this.ddesc = products.getDdesc();
+        this.price = products.getPrice();
+        this.pCategoryId = products.getPCategoryId();
+        this.categoryId = products.getCategoryId();
+        this.detail = products.getDetail();
+        this.v = products.getV();
+
+
+//        String[] imgs2 = new String[];
+
+        String imgspp = products.getImgs();
+
+        this.imgs  =  imgspp.split("--");
+
     }
+
+
 
 }

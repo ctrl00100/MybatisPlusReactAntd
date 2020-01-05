@@ -26,7 +26,7 @@ public class AliyunConfig {
 //    public OSSClient ossClient(){
 //        return new OSSClient(ALIYUN_OSS_ENDPOINT,ALIYUN_OSS_ACCESSKEYID,ALIYUN_OSS_ACCESSKEYSECRET);
 //    }
-@Value("${aliyun.oss.endpoint}")
+    @Value("${aliyun.oss.endpoint}")
     private String endpoint;
     @Value("${aliyun.oss.accessKeyId}")
     private String accessKeyId;

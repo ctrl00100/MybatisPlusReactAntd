@@ -1,6 +1,8 @@
 package com.example.my.mybatispp.oss;
 
 import com.aliyun.oss.model.OSSObjectSummary;
+import com.example.my.mybatispp.config.RestResult;
+import com.example.my.mybatispp.config.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,28 +20,28 @@ import java.util.List;
  * @Description:
  */
 
-@RequestMapping("/file")
+
 @Controller
 public class FileUploadController {
     @Autowired
     private FileUploadService fileUploadService;
-    @RequestMapping("/upload2")
-    @ResponseBody
-    public FileUploadResult upload2(@RequestParam("file") MultipartFile uploadFile)
-            throws Exception {
-        return this.fileUploadService.upload(uploadFile);
-    }
+
     /**
      * @author lastwhisper
      * @desc 文件上传到oss
      * @return FileUploadResult
      * @Param uploadFile
      */
-    @RequestMapping("/upload")
+    @RequestMapping("/file/upload")
     @ResponseBody
-    public FileUploadResult upload(@RequestParam("file") MultipartFile uploadFile)
-            throws Exception {
+    public FileUploadResult upload(@RequestParam("file") MultipartFile uploadFile) throws Exception {
+//    public RestResult upload(@RequestParam("file") MultipartFile[] uploadFile) throws Exception {
         return this.fileUploadService.upload(uploadFile);
+
+
+//        return new RestResult(true, StatusCode.OK, "add..ok");
+
+
     }
 
     /**
