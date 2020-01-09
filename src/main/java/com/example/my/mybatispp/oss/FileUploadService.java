@@ -77,8 +77,8 @@ public class FileUploadService {
             fileUploadResult.setStatus("error");
             return fileUploadResult;
         }
-        fileUploadResult.setStatus("done");
-        fileUploadResult.setResponse("success");
+        fileUploadResult.setStatus("0");
+        fileUploadResult.setResponse("uploadsuccess");
         //this.aliyunConfig.getUrlPrefix() + filePath 文件路径需要保存到数据库
         fileUploadResult.setName(this.aliyunConfig.getUrlPrefix() + filePath);
         fileUploadResult.setUid(String.valueOf(System.currentTimeMillis()));
@@ -183,8 +183,8 @@ public class FileUploadService {
         ossClient.deleteObject(aliyunConfig.getBucketName(), objectName);
         FileUploadResult fileUploadResult = new FileUploadResult();
         fileUploadResult.setName(objectName);
-        fileUploadResult.setStatus("removed");
-        fileUploadResult.setResponse("success");
+        fileUploadResult.setStatus("0");
+        fileUploadResult.setResponse("removedsuccess");
         return fileUploadResult;
     }
 

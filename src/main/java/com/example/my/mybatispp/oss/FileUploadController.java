@@ -1,18 +1,18 @@
 package com.example.my.mybatispp.oss;
 
+import cn.hutool.json.JSONObject;
 import com.aliyun.oss.model.OSSObjectSummary;
 import com.example.my.mybatispp.config.RestResult;
 import com.example.my.mybatispp.config.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther: Administrator
@@ -20,8 +20,8 @@ import java.util.List;
  * @Description:
  */
 
-
-@Controller
+@CrossOrigin
+@RestController
 public class FileUploadController {
     @Autowired
     private FileUploadService fileUploadService;
@@ -32,7 +32,7 @@ public class FileUploadController {
      * @return FileUploadResult
      * @Param uploadFile
      */
-    @RequestMapping("/file/upload")
+    @RequestMapping(value = "/file/upload",method = RequestMethod.POST )
     @ResponseBody
     public FileUploadResult upload(@RequestParam("file") MultipartFile uploadFile) throws Exception {
 //    public RestResult upload(@RequestParam("file") MultipartFile[] uploadFile) throws Exception {
@@ -51,11 +51,16 @@ public class FileUploadController {
      * @author lastwhisper
      * @Param objectName
      */
-    @RequestMapping("file/delete")
+    @RequestMapping(value ="/file/delete", method = RequestMethod.POST)
     @ResponseBody
-    public FileUploadResult delete(@RequestParam("fileName") String objectName)
-            throws Exception {
-        return this.fileUploadService.delete(objectName);
+//    public FileUploadResult delete(@RequestParam("fileName") String objectName) throws Exception {
+    public FileUploadResult delete(@RequestBody Map<String, String> map) throws Exception {
+        String s = map.get("fileName").toString();// Map<String, String> map
+
+//        String s = map.toString();
+        System.out.println(s);
+        System.out.println(this.fileUploadService.delete(s));
+        return this.fileUploadService.delete(s);
     }
 
     /**
