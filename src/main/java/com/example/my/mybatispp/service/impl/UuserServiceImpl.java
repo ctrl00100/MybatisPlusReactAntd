@@ -1,6 +1,5 @@
 package com.example.my.mybatispp.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * <p>
@@ -28,11 +28,19 @@ public class UuserServiceImpl extends ServiceImpl<UuserMapper, Uuser> implements
     @Autowired
     private UuserMapper iUuserMapper;
 
+    public static synchronized   String  genUniqueKey(){
+        Random random = new Random();
+        Integer number = random.nextInt(900000)+100000;
+        return  System.currentTimeMillis() + String.valueOf(number);
+    }
 
     //c  add
     @Override
     public void add(Uuser obj) {
-
+//        obj.setId((long) 55);
+        Random random = new Random();
+        Integer number = random.nextInt(900000)+100000;
+        obj.setId( number.toString());
         iUuserMapper.insert(obj);
 
     }
@@ -66,7 +74,7 @@ public class UuserServiceImpl extends ServiceImpl<UuserMapper, Uuser> implements
 
     //d deleteById
     @Override
-    public void deleteById(int obj) {
+    public void deleteById(String obj) {
 
         iUuserMapper.deleteById(obj);
 

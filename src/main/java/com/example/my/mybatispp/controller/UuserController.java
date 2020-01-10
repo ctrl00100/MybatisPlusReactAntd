@@ -53,6 +53,13 @@ public RestResult add(@RequestBody Uuser obj) {
         return new RestResult(true, StatusCode.OK, "add..ok");
         }
 
+    //add
+    @RequestMapping(path = "/user/add", method = RequestMethod.POST)
+    public RestResult add2(@RequestBody Uuser obj) {
+        iUuserService.add(obj);
+        return new RestResult(true, StatusCode.OK, "add..ok");
+    }
+
 //findById r
 @RequestMapping(path = "/findById/{id}", method = RequestMethod.GET)
 public RestResult findById(@PathVariable("id") int id) {
@@ -76,17 +83,30 @@ public RestResult findAll(@PathVariable("current") int current, @PathVariable("s
         return new RestResult(true, StatusCode.OK, "findAll..ok", mm.getRecords());
         }
 
+    @RequestMapping(path = "/user/list", method = RequestMethod.GET)
+    public RestResult findAll2() {
+
+
+        IPage<Uuser> mm = iUuserService.findAll(1, 11111);
+
+        System.out.println(mm.getRecords());
+        return new RestResult(true, StatusCode.OK, "findAll..ok", mm.getRecords());
+    }
+
 //update
-@RequestMapping(path = "/update", method = RequestMethod.PUT)
+@RequestMapping(path = "/user/update", method = RequestMethod.POST)
 public RestResult update(@RequestBody Uuser obj) {
         iUuserService.update(obj);
         return new RestResult(true, StatusCode.OK, "update..ok");
         }
 
 //delete
-@RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE)
-public RestResult delete(@PathVariable("id") int id) {
-        iUuserService.deleteById(id);
+@RequestMapping(path = "/user/delete", method = RequestMethod.POST)
+public RestResult delete(@RequestBody Uuser  uuser) {
+    System.out.println(uuser);
+    String aa= (uuser.getId()).toString();
+
+        iUuserService.deleteById(aa);
         return new RestResult(true, StatusCode.OK, "delete..ok");
         }
 

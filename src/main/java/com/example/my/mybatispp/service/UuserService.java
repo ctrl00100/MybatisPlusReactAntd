@@ -17,7 +17,7 @@ import java.util.List;
 public interface UuserService extends IService<Uuser> {
 
         void add(Uuser obj);
-        void deleteById(int obj);
+        void deleteById(String obj);
         void update(Uuser obj);
         IPage<Uuser> findAll(int current, int size);
         Uuser findById(int id);

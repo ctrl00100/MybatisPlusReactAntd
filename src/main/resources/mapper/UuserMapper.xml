@@ -4,7 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.example.my.mybatispp.entity.Uuser">
-        <result column="id" property="id" />
+        <id column="id" property="id" />
         <result column="username" property="username" />
         <result column="password" property="password" />
         <result column="phone" property="phone" />
@@ -13,18 +13,5 @@
         <result column="create_time" property="createTime" />
         <result column="v" property="v" />
     </resultMap>
-
-    <select id="selectByUsername" resultType="com.example.my.mybatispp.entity.Uuser">
-        SELECT
-           username,
-           password
-        FROM
-            UUSER
-
-        WHERE
-        username=#{username}
-
-    </select>
-
 
 </mapper>
