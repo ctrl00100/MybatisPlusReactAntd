@@ -17,8 +17,8 @@ server:
   port: 5000
 #aliyun:
 #  oss:
-#    access-id:   LTAI4FrF1XQdoFpc9R6JmGDd
-#    access-key:  SvxnWfFxfFE3huQ6zY5rAWLQ0uBWCK
+#    access-id:   LTAI4FrF1XQdoFc9R6JmGDd
+#    access-key:  SvxnWfFxfFE3huQ6Y5rAWLQ0uBWCK
 #    bucket:      ctrl010
 #    endpoint:    oss-cn-chengdu.aliyuncs.com
 #    dir:         images/
