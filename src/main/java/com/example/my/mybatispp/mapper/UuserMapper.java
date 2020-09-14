@@ -19,7 +19,7 @@ public interface UuserMapper extends BaseMapper<Uuser> {
 //    @Select("SELECT * FROM USER WHERE CODE = #{userCode}")
 //    List<User> selectByUsername(@Param("userCode")String userCode);
 
-        @Select("SELECT * FROM UUSER WHERE username = #{userCode}")
+    @Select("SELECT * FROM UUSER WHERE username = #{userCode}")
     Uuser selectByUsernamezj(@Param("userCode")String userCode);
 //    Uuser selectByUsername(@Param("username")String username);
 }

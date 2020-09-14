@@ -2,7 +2,7 @@
 
 ## 展示
 
-![展示1](<http://ctrl010.k1772714.club/images/2020/01/17/15792694002908698.jpg>)
+![展示1](<https://github.com/ctrl00100/MybatisPlusReactAntd/img/暂时1.jpg>)
 
 商品一二级目录
 
