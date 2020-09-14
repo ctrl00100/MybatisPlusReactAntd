@@ -25,17 +25,17 @@ git clone https://github.com/ctrl00100/MybatisPlusReactAntd.git
 
 
 
-![后端1](https://github.com/ctrl00100/ReactAdmin/blob/master/img/后端1)
+![后端1](https://github.com/ctrl00100/ReactAdmin/blob/master/img/后端1.png)
 
 ## 2.前端
 
-![前端1](https://github.com/ctrl00100/ReactAdmin/blob/master/img/前端1)
+![前端1](https://github.com/ctrl00100/ReactAdmin/blob/master/img/前端1.png)
 
-![前端2](https://github.com/ctrl00100/ReactAdmin/blob/master/img/前端2)
+![前端2](https://github.com/ctrl00100/ReactAdmin/blob/master/img/前端2.png)
 
 数组利用--分割和拼接(图片url和权限)
 
-![前端3](https://github.com/ctrl00100/ReactAdmin/blob/master/img/前端3)
+![前端3](https://github.com/ctrl00100/ReactAdmin/blob/master/img/前端3.png)
 
 ```shell
 git clone https://github.com/ctrl00100/ReactAdmin.git
