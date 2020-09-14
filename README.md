@@ -25,7 +25,7 @@ git clone https://github.com/ctrl00100/MybatisPlusReactAntd.git
 
 
 
-![后端1](https://github.com/ctrl00100/MybatisPlusReactAntd/blob/master/img/后端1.png)
+![后端1](https://github.com/ctrl00100/MybatisPlusReactAntd/blob/master/img/后端1.jpg)
 
 ## 2.前端
 
